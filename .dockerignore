@@ -1,0 +1,16 @@
+/.direnv/
+/.spago/
+/docker/
+/output/
+/test/
+/.envrc
+/.gitignore
+/.gitmodules
+/.psc-ide-port
+/.purs-repl
+/flake.lock
+/flake.nix
+/README.md
+/result
+/spago.dhall
+/zellij.kdl

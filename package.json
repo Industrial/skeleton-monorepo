@@ -1,0 +1,20 @@
+{
+  "name": "@code9/monorepo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "build": "npx nx run-many --target=build --all",
+    "dev": "npx nx run-many --target=dev --all",
+    "pre-commit": "pnpm run --filter \"@code9/monorepo-*\" pre-commit",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.1",
+    "nx": "^15.8.6"
+  }
+}
