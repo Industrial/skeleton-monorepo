@@ -1,16 +1,13 @@
 {
-  "name": "@code9/monorepo",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "name": "skeleton-monorepo",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
     "build": "npx nx run-many --target=build --all",
     "dev": "npx nx run-many --target=dev --all",
-    "pre-commit": "pnpm run --filter \"@code9/monorepo-*\" pre-commit",
-    "prepare": "husky install"
+    "pre-commit": "pnpm run --filter \"skeleton-*\" pre-commit",
+    "prepare": "husky install",
+    "update-packages": "pnpx npm-check-updates -u && pnpm i"
   },
   "devDependencies": {
     "husky": "^8.0.3",
