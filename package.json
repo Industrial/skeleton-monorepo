@@ -1,11 +1,11 @@
 {
-  "name": "skeleton-monorepo",
+  "name": "@code9/todo",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "build": "npx nx run-many --target=build --all",
     "dev": "npx nx run-many --target=dev --all",
-    "pre-commit": "pnpm run --filter \"skeleton-*\" pre-commit",
+    "pre-commit": "pnpm run --filter \"@code9/todo-*\" pre-commit",
     "prepare": "husky install",
     "update-packages": "pnpx npm-check-updates -u && pnpm i"
   },
