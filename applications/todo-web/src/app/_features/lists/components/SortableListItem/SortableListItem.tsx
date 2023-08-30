@@ -11,10 +11,24 @@ import ListItemText from '@mui/material/ListItemText'
 import Paper from '@mui/material/Paper'
 
 import { Link } from '@/app/_components/atoms/Link'
+import { trpc } from '@/app/_trpc/client'
 import { List } from '@/domain'
 
-export const SortableListItem = ({ list }: { list: List }): JSX.Element => {
+export type SortableListItemProps = {
+  list: List
+  onDelete: (list: List) => Promise<void>
+}
+
+export const SortableListItem = ({ list, onDelete }: SortableListItemProps): JSX.Element => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: list.id })
+  const deleteList = trpc.deleteList.useMutation()
+
+  const handleDelete = async () => {
+    await deleteList.mutateAsync({
+      id: list.id,
+    })
+    await onDelete(list)
+  }
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -31,10 +45,11 @@ export const SortableListItem = ({ list }: { list: List }): JSX.Element => {
         }
       }}
       style={style}
+      aria-disabled={deleteList.isLoading}
     >
       <ListItem
         secondaryAction={
-          <IconButton edge="end" aria-label="delete">
+          <IconButton edge="end" aria-label="delete" onClick={handleDelete}>
             <DeleteIcon />
           </IconButton>
         }

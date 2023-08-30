@@ -13,6 +13,7 @@ import { DefaultLayout } from '@/app/_components/layouts/DefaultLayout'
 import { SortableListItem } from '@/app/_features/lists/components/SortableListItem'
 import { trpc } from '@/app/_trpc/client'
 import { serverClient } from '@/app/_trpc/serverClient'
+import { List } from '@/domain'
 
 // TODO: Set title in document
 const title = 'Lists'
@@ -24,12 +25,12 @@ export const ListListPageTemplate = ({
 }): JSX.Element => {
   const getLists = trpc.getLists.useQuery(undefined, {
     initialData: lists,
-    refetchOnMount: false,
-    refetchOnReconnect: false,
+    refetchOnMount: true,
+    refetchOnReconnect: true,
+    refetchOnWindowFocus: true,
   })
-  const updateList = trpc.updateList.useMutation()
-
   const [listsState, setListsState] = useState(getLists.data)
+  const updateList = trpc.updateList.useMutation()
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -37,6 +38,15 @@ export const ListListPageTemplate = ({
       coordinateGetter: sortableKeyboardCoordinates,
     }),
   )
+
+  const handleDelete = async (list: List) => {
+    const newListsState = listsState.filter((entry) => {
+      return entry.id !== list.id
+    })
+    setListsState(newListsState)
+
+    await getLists.refetch()
+  }
 
   const handleDragEnd = async ({ active, over }: DragEndEvent) => {
     if (!over || active.id === over.id) {
@@ -93,7 +103,7 @@ export const ListListPageTemplate = ({
               <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
                 <SortableContext items={listsState} strategy={verticalListSortingStrategy}>
                   {listsState.map((entry) => {
-                    return <SortableListItem key={entry.id} list={entry} />
+                    return <SortableListItem key={entry.id} list={entry} onDelete={handleDelete} />
                   })}
                 </SortableContext>
               </DndContext>
