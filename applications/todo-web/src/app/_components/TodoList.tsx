@@ -1,79 +1,81 @@
 'use client'
+
 import { useState } from 'react'
 
 import { trpc } from '@/app/_trpc/client'
 import { serverClient } from '@/app/_trpc/serverClient'
 
-const TodoList = ({
-  initialTodos,
+const ItemList = ({
+  initialItems,
 }: {
-  initialTodos: Awaited<ReturnType<(typeof serverClient)['getTodos']>>
+  initialItems: Awaited<ReturnType<(typeof serverClient)['getItems']>>
 }): JSX.Element => {
-  const getTodos = trpc.getTodos.useQuery(undefined, {
-    initialData: initialTodos,
+  const getItems = trpc.getItems.useQuery(undefined, {
+    initialData: initialItems,
     refetchOnMount: false,
     refetchOnReconnect: false,
   })
-  const addTodo = trpc.addTodo.useMutation({
+  const addItem = trpc.createItem.useMutation({
     onSettled: async () => {
-      await getTodos.refetch()
+      await getItems.refetch()
     },
   })
-  const setDone = trpc.setDone.useMutation({
+  const updateItem = trpc.updateItem.useMutation({
     onSettled: async () => {
-      await getTodos.refetch()
+      await getItems.refetch()
     },
   })
 
-  const [content, setContent] = useState('')
+  const [label, setlabel] = useState('')
 
   return (
     <div>
       <div className="text-black my-5 text-3xl">
-        {getTodos.data.map((todo) => {
+        {getItems.data.map((item) => {
           return (
-            <div key={todo.id} className="flex gap-3 items-center">
+            <div key={item.id} className="flex gap-3 items-center">
               <input
-                id={`check-${todo.id}`}
+                id={`check-${item.id}`}
                 type="checkbox"
-                checked={Boolean(todo.done)}
+                checked={Boolean(item.complete)}
                 style={{ zoom: 1.5 }}
                 onChange={async () => {
-                  setDone.mutate({
-                    id: todo.id,
-                    done: todo.done ? 0 : 1,
+                  updateItem.mutate({
+                    id: item.id,
+                    label: item.label,
+                    complete: !item.complete,
                   })
                 }}
               />
-              <label htmlFor={`check-${todo.id}`}>{todo.content}</label>
+              <label htmlFor={`check-${item.id}`}>{item.label}</label>
             </div>
           )
         })}
       </div>
       <div className="flex gap-3 items-center">
-        <label htmlFor="content">Content</label>
+        <label htmlFor="label">label</label>
         <input
-          id="content"
-          value={content}
+          id="label"
+          value={label}
           onChange={(e) => {
-            setContent(e.target.value)
+            setlabel(e.target.value)
           }}
           className="flex-grow text-black bg-white rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 px-4 py-2"
         />
         <button
           onClick={async () => {
-            if (content.length) {
-              addTodo.mutate(content)
-              setContent('')
+            if (label.length) {
+              addItem.mutate({ label })
+              setlabel('')
             }
           }}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
         >
-          Add Todo
+          Add Item
         </button>
       </div>
     </div>
   )
 }
 
-export default TodoList
+export default ItemList

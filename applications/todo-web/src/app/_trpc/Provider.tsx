@@ -6,6 +6,7 @@ import type { ReactNode } from 'react'
 import { useState } from 'react'
 
 import { trpc } from '@/app/_trpc/client'
+import { baseURL } from '@/utils/environment'
 
 const Provider = ({ children }: { children: ReactNode }): JSX.Element => {
   const [queryClient] = useState(() => {
@@ -16,7 +17,7 @@ const Provider = ({ children }: { children: ReactNode }): JSX.Element => {
     return trpc.createClient({
       links: [
         httpBatchLink({
-          url: 'http://localhost:3000/api/trpc',
+          url: `${baseURL()}/api/trpc`,
         }),
       ],
     })

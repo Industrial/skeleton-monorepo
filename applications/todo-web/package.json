@@ -3,22 +3,31 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "build": "keystone build --no-ui && next build",
+    "keystone:build": "keystone build",
+    "keystone:dev": "keystone dev",
+    "keystone:start": "keystone start",
+    "next:build": "next build",
+    "next:dev": "next dev -p 4000",
+    "postinstall": "keystone postinstall",
+    "start": "next start"
   },
   "dependencies": {
+    "@keystone-6/auth": "^7.0.0",
+    "@keystone-6/core": "^5.2.0",
+    "@keystone-6/fields-document": "^8.0.0",
+    "@preconstruct/next": "^4.0.0",
+    "@prisma/client": "^4.16.2",
     "@tanstack/react-query": "^4.33.0",
     "@trpc/client": "^10.38.0",
     "@trpc/next": "^10.38.0",
     "@trpc/react-query": "^10.38.0",
     "@trpc/server": "^10.38.0",
-    "@types/node": "20.5.6",
-    "@types/react": "18.2.21",
-    "@types/react-dom": "18.2.7",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
+    "graphql": "^16.6.0",
+    "graphql-request": "^5.0.0",
+    "graphql-yoga": "^3.1.0",
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -26,7 +35,13 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
+    "@types/node": "20.5.6",
+    "@types/react": "18.2.21",
+    "@types/react-dom": "18.2.7",
     "eslint-config-code9": "^0.3.0",
-    "eslint-plugin-prettier": "5.0.0"
+    "eslint-plugin-prettier": "5.0.0",
+    "prisma": "^4.16.2",
+    "ts-node": "^10.9.1",
+    "typescript": "~5.0.0"
   }
 }
