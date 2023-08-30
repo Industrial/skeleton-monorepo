@@ -20,11 +20,6 @@ const ItemList = ({
       await getItems.refetch()
     },
   })
-  const updateItem = trpc.updateItem.useMutation({
-    onSettled: async () => {
-      await getItems.refetch()
-    },
-  })
 
   const [label, setlabel] = useState('')
 
@@ -32,13 +27,20 @@ const ItemList = ({
     <div>
       <div className="text-black my-5 text-3xl">
         {getItems.data.map((item) => {
+          const updateItem = trpc.updateItem.useMutation({
+            onSettled: async () => {
+              await getItems.refetch()
+            },
+          })
+
           return (
-            <div key={item.id} className="flex gap-3 items-center">
+            <div key={item.id} className="flex gap-3 items-center" aria-disabled={updateItem.isLoading}>
               <input
                 id={`check-${item.id}`}
                 type="checkbox"
                 checked={Boolean(item.complete)}
                 style={{ zoom: 1.5 }}
+                disabled={updateItem.isLoading}
                 onChange={async () => {
                   updateItem.mutate({
                     id: item.id,
