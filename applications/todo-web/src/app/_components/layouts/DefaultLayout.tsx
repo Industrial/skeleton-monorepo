@@ -1,21 +1,26 @@
-import Box from '@suid/material/Box'
-import type { JSX } from 'solid-js'
+'use client'
+
+import { CssBaseline } from '@mui/material'
+import Box from '@mui/material/Box'
+import { Fragment, PropsWithChildren } from 'react'
 
 import { Navbar } from '@/app/_components/organisms/navbar'
 
-export const DefaultLayout = ({ children }: { children: JSX.Element }): JSX.Element => {
+export const DefaultLayout = ({ children }: PropsWithChildren): JSX.Element => {
   return (
-    <Box
-      sx={{
-        height: '100vh',
-        backgroundColor: (theme) => {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
-          return theme.palette.background.default
-        },
-      }}
-    >
-      <Navbar />
-      {children}
-    </Box>
+    <Fragment>
+      <CssBaseline />
+      <Box
+        sx={(theme) => {
+          return {
+            height: '100vh',
+            backgroundColor: theme.palette.background.default,
+          }
+        }}
+      >
+        <Navbar />
+        {children}
+      </Box>
+    </Fragment>
   )
 }

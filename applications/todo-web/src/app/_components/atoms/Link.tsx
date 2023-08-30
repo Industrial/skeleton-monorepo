@@ -1,5 +1,5 @@
-import type { LinkProps as MUILinkProps } from '@suid/material'
-import { Link as MUILink } from '@suid/material'
+import type { LinkProps as MUILinkProps } from '@mui/material'
+import { Link as MUILink } from '@mui/material'
 
 export type LinkProps = MUILinkProps & {
   linkVariant: 'no-decoration' | 'underline'

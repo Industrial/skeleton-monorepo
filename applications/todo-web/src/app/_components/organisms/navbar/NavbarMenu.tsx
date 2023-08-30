@@ -1,5 +1,4 @@
-import { Box, Button } from '@suid/material'
-import type { JSX } from 'solid-js'
+import { Box, Button } from '@mui/material'
 
 import { MenuLink } from '@/utils/navigation'
 

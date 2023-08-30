@@ -1,6 +1,5 @@
 import './Counter.css'
 
-import type { JSX } from 'solid-js'
 import { createSignal } from 'solid-js'
 
 export const Counter = (): JSX.Element => {

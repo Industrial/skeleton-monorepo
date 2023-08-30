@@ -1,15 +1,14 @@
-import CategoryIcon from '@suid/icons-material/Category'
-import DashboardIcon from '@suid/icons-material/Dashboard'
-import LabelIcon from '@suid/icons-material/Label'
-import ListIcon from '@suid/icons-material/List'
-import LogoutIcon from '@suid/icons-material/Logout'
-import NotesIcon from '@suid/icons-material/Note'
-import SettingsIcon from '@suid/icons-material/Settings'
-import AppBar from '@suid/material/AppBar'
-import Box from '@suid/material/Box'
-import Container from '@suid/material/Container'
-import Toolbar from '@suid/material/Toolbar'
-import type { JSX } from 'solid-js'
+import CategoryIcon from '@mui/icons-material/Category'
+import DashboardIcon from '@mui/icons-material/Dashboard'
+import LabelIcon from '@mui/icons-material/Label'
+import ListIcon from '@mui/icons-material/List'
+import LogoutIcon from '@mui/icons-material/Logout'
+import NotesIcon from '@mui/icons-material/Note'
+import SettingsIcon from '@mui/icons-material/Settings'
+import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+import Toolbar from '@mui/material/Toolbar'
 
 import { MenuLink } from '@/utils/navigation'
 
@@ -22,27 +21,27 @@ const pages: Array<MenuLink> = [
   {
     label: 'Dashboard',
     url: '/',
-    // icon: <DashboardIcon />,
+    icon: <DashboardIcon />,
   },
   {
     label: 'Lists',
     url: '/lists',
-    // icon: <ListIcon />,
+    icon: <ListIcon />,
   },
   {
     label: 'Projects',
     url: '/projects',
-    // icon: <CategoryIcon />,
+    icon: <CategoryIcon />,
   },
   {
     label: 'Tags',
     url: '/tags',
-    // icon: <LabelIcon />,
+    icon: <LabelIcon />,
   },
   {
     label: 'Items',
     url: '/items',
-    // icon: <NotesIcon />,
+    icon: <NotesIcon />,
   },
 ]
 
@@ -50,12 +49,12 @@ const settings: Array<MenuLink> = [
   {
     label: 'Settings',
     url: '/settings',
-    // icon: <SettingsIcon />,
+    icon: <SettingsIcon />,
   },
   {
     label: 'Logout',
     url: '/logout',
-    // icon: <LogoutIcon />,
+    icon: <LogoutIcon />,
   },
 ]
 

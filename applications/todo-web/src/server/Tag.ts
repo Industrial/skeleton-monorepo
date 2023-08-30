@@ -31,6 +31,11 @@ export const getTag = publicProcedure.input(z.string()).query(async ({ input: id
   return result as Maybe<Tag>
 })
 
+export const countTags = publicProcedure.query(async () => {
+  const result = await keystoneContext.query.Tag.count()
+  return result
+})
+
 export const getTags = publicProcedure.query(async () => {
   const result = await keystoneContext.query.Tag.findMany()
 

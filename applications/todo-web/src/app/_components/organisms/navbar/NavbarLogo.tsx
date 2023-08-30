@@ -1,8 +1,6 @@
-import CheckCircleIcon from '@suid/icons-material/CheckCircle'
-import Box from '@suid/material/Box'
-import Typography from '@suid/material/Typography'
-import type { JSX } from 'solid-js'
-
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 export const NavbarLogo = ({ variant }: { variant: 'large' | 'small' }): JSX.Element => {
   return (
     <Box

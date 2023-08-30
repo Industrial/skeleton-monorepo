@@ -6,5 +6,5 @@ export type Tag = {
   createdAt: string
   updatedAt: string
   label: string
-  items: Array<Item>
+  items?: Array<Item>
 }

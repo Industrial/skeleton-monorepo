@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ReactNode } from 'react'
 
-import Provider from '@/app/_trpc/Provider'
+import TRPCProvider from '@/app/_trpc/Provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,7 +17,7 @@ export default ({ children }: { children: ReactNode }): JSX.Element => {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Provider>{children}</Provider>
+        <TRPCProvider>{children}</TRPCProvider>
       </body>
     </html>
   )

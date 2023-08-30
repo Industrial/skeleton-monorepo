@@ -9,12 +9,15 @@ export const createList = publicProcedure
   .input(
     z.object({
       label: z.string(),
+      sortOrder: z.optional(z.number()),
     }),
   )
   .mutation(async (_opts) => {
     const result = await keystoneContext.query.List.createOne({
       data: {
-        ..._opts.input,
+        label: _opts.input.label,
+        updatedAt: new Date(),
+        sortOrder: _opts.input.sortOrder,
       },
     })
 
@@ -31,8 +34,18 @@ export const getList = publicProcedure.input(z.string()).query(async ({ input: i
   return result as Maybe<Tag>
 })
 
+export const countLists = publicProcedure.query(async () => {
+  const result = await keystoneContext.query.List.count()
+  return result
+})
+
 export const getLists = publicProcedure.query(async () => {
-  const result = await keystoneContext.query.List.findMany()
+  const result = await keystoneContext.query.List.findMany({
+    query: 'id label sortOrder createdAt updatedAt',
+    orderBy: {
+      sortOrder: 'asc',
+    },
+  })
 
   return result as Array<Tag>
 })
@@ -42,6 +55,7 @@ export const updateList = publicProcedure
     z.object({
       id: z.string(),
       label: z.string(),
+      sortOrder: z.number(),
     }),
   )
   .mutation(async (_opts) => {
@@ -51,6 +65,8 @@ export const updateList = publicProcedure
       },
       data: {
         label: _opts.input.label,
+        updatedAt: new Date(),
+        sortOrder: _opts.input.sortOrder,
       },
     })
 

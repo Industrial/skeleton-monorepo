@@ -7,7 +7,7 @@ export type Item = {
   updatedAt: string
   label: string
   complete: boolean
-  list: List
-  project: Project
-  tags: Array<Tag>
+  list?: List
+  project?: Project
+  tags?: Array<Tag>
 }

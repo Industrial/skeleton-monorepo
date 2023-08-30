@@ -23,6 +23,12 @@
         "uriFormat": "%s",
         "action": "debugWithChrome"
       }
+    },
+    {
+      "name": "Keystone",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run keystone:dev",
     }
   ]
 }

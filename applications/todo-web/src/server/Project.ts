@@ -31,6 +31,11 @@ export const getProject = publicProcedure.input(z.string()).query(async ({ input
   return result as Maybe<List>
 })
 
+export const countProjects = publicProcedure.query(async () => {
+  const result = await keystoneContext.query.Project.count()
+  return result
+})
+
 export const getProjects = publicProcedure.query(async () => {
   const result = await keystoneContext.query.Project.findMany()
 

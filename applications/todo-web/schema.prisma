@@ -14,9 +14,10 @@ generator client {
 
 model Item {
   id                 String    @id @default(cuid())
+  label              String    @default("")
+  sortOrder          Int?
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @default(now())
-  label              String    @default("")
   complete           Boolean   @default(false)
   list               List?     @relation("Item_list", fields: [listId], references: [id])
   listId             String?   @map("list")
@@ -33,27 +34,29 @@ model Item {
 
 model List {
   id             String   @id @default(cuid())
+  label          String   @default("")
+  sortOrder      Int?
   createdAt      DateTime @default(now())
   updatedAt      DateTime @default(now())
-  label          String   @default("")
   items          Item[]   @relation("List_items")
   from_Item_list Item[]   @relation("Item_list")
 }
 
 model Project {
   id                String   @id @default(cuid())
+  label             String   @default("")
+  sortOrder         Int?
   createdAt         DateTime @default(now())
   updatedAt         DateTime @default(now())
-  label             String   @default("")
   items             Item[]   @relation("Project_items")
   from_Item_project Item[]   @relation("Item_project")
 }
 
 model Tag {
   id             String   @id @default(cuid())
+  label          String   @default("")
   createdAt      DateTime @default(now())
   updatedAt      DateTime @default(now())
-  label          String   @default("")
   items          Item[]   @relation("Tag_items")
   from_Item_tags Item[]   @relation("Item_tags")
 }

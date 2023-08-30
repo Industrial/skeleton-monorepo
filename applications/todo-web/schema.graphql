@@ -3,9 +3,10 @@
 
 type Item {
   id: ID!
+  label: String
+  sortOrder: Int
   createdAt: DateTime
   updatedAt: DateTime
-  label: String
   complete: Boolean
   list: List
   project: Project
@@ -24,9 +25,10 @@ input ItemWhereInput {
   OR: [ItemWhereInput!]
   NOT: [ItemWhereInput!]
   id: IDFilter
+  label: StringFilter
+  sortOrder: IntNullableFilter
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
-  label: StringFilter
   complete: BooleanFilter
   list: ListWhereInput
   project: ProjectWhereInput
@@ -42,17 +44,6 @@ input IDFilter {
   gt: ID
   gte: ID
   not: IDFilter
-}
-
-input DateTimeFilter {
-  equals: DateTime
-  in: [DateTime!]
-  notIn: [DateTime!]
-  lt: DateTime
-  lte: DateTime
-  gt: DateTime
-  gte: DateTime
-  not: DateTimeFilter
 }
 
 input StringFilter {
@@ -83,6 +74,28 @@ input NestedStringFilter {
   not: NestedStringFilter
 }
 
+input IntNullableFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: IntNullableFilter
+}
+
+input DateTimeFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: DateTimeFilter
+}
+
 input BooleanFilter {
   equals: Boolean
   not: BooleanFilter
@@ -96,9 +109,10 @@ input TagManyRelationFilter {
 
 input ItemOrderByInput {
   id: OrderDirection
+  label: OrderDirection
+  sortOrder: OrderDirection
   createdAt: OrderDirection
   updatedAt: OrderDirection
-  label: OrderDirection
   complete: OrderDirection
 }
 
@@ -108,9 +122,10 @@ enum OrderDirection {
 }
 
 input ItemUpdateInput {
+  label: String
+  sortOrder: Int
   createdAt: DateTime
   updatedAt: DateTime
-  label: String
   complete: Boolean
   list: ListRelateToOneForUpdateInput
   project: ProjectRelateToOneForUpdateInput
@@ -142,9 +157,10 @@ input ItemUpdateArgs {
 }
 
 input ItemCreateInput {
+  label: String
+  sortOrder: Int
   createdAt: DateTime
   updatedAt: DateTime
-  label: String
   complete: Boolean
   list: ListRelateToOneForCreateInput
   project: ProjectRelateToOneForCreateInput
@@ -168,9 +184,10 @@ input TagRelateToManyForCreateInput {
 
 type List {
   id: ID!
+  label: String
+  sortOrder: Int
   createdAt: DateTime
   updatedAt: DateTime
-  label: String
   items(where: ItemWhereInput! = {}, orderBy: [ItemOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ItemWhereUniqueInput): [Item!]
   itemsCount(where: ItemWhereInput! = {}): Int
 }
@@ -184,9 +201,10 @@ input ListWhereInput {
   OR: [ListWhereInput!]
   NOT: [ListWhereInput!]
   id: IDFilter
+  label: StringFilter
+  sortOrder: IntNullableFilter
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
-  label: StringFilter
   items: ItemManyRelationFilter
 }
 
@@ -198,15 +216,17 @@ input ItemManyRelationFilter {
 
 input ListOrderByInput {
   id: OrderDirection
+  label: OrderDirection
+  sortOrder: OrderDirection
   createdAt: OrderDirection
   updatedAt: OrderDirection
-  label: OrderDirection
 }
 
 input ListUpdateInput {
+  label: String
+  sortOrder: Int
   createdAt: DateTime
   updatedAt: DateTime
-  label: String
   items: ItemRelateToManyForUpdateInput
 }
 
@@ -223,9 +243,10 @@ input ListUpdateArgs {
 }
 
 input ListCreateInput {
+  label: String
+  sortOrder: Int
   createdAt: DateTime
   updatedAt: DateTime
-  label: String
   items: ItemRelateToManyForCreateInput
 }
 
@@ -236,9 +257,10 @@ input ItemRelateToManyForCreateInput {
 
 type Project {
   id: ID!
+  label: String
+  sortOrder: Int
   createdAt: DateTime
   updatedAt: DateTime
-  label: String
   items(where: ItemWhereInput! = {}, orderBy: [ItemOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ItemWhereUniqueInput): [Item!]
   itemsCount(where: ItemWhereInput! = {}): Int
 }
@@ -252,23 +274,26 @@ input ProjectWhereInput {
   OR: [ProjectWhereInput!]
   NOT: [ProjectWhereInput!]
   id: IDFilter
+  label: StringFilter
+  sortOrder: IntNullableFilter
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
-  label: StringFilter
   items: ItemManyRelationFilter
 }
 
 input ProjectOrderByInput {
   id: OrderDirection
+  label: OrderDirection
+  sortOrder: OrderDirection
   createdAt: OrderDirection
   updatedAt: OrderDirection
-  label: OrderDirection
 }
 
 input ProjectUpdateInput {
+  label: String
+  sortOrder: Int
   createdAt: DateTime
   updatedAt: DateTime
-  label: String
   items: ItemRelateToManyForUpdateInput
 }
 
@@ -278,17 +303,18 @@ input ProjectUpdateArgs {
 }
 
 input ProjectCreateInput {
+  label: String
+  sortOrder: Int
   createdAt: DateTime
   updatedAt: DateTime
-  label: String
   items: ItemRelateToManyForCreateInput
 }
 
 type Tag {
   id: ID!
+  label: String
   createdAt: DateTime
   updatedAt: DateTime
-  label: String
   items(where: ItemWhereInput! = {}, orderBy: [ItemOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ItemWhereUniqueInput): [Item!]
   itemsCount(where: ItemWhereInput! = {}): Int
 }
@@ -302,23 +328,23 @@ input TagWhereInput {
   OR: [TagWhereInput!]
   NOT: [TagWhereInput!]
   id: IDFilter
+  label: StringFilter
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
-  label: StringFilter
   items: ItemManyRelationFilter
 }
 
 input TagOrderByInput {
   id: OrderDirection
+  label: OrderDirection
   createdAt: OrderDirection
   updatedAt: OrderDirection
-  label: OrderDirection
 }
 
 input TagUpdateInput {
+  label: String
   createdAt: DateTime
   updatedAt: DateTime
-  label: String
   items: ItemRelateToManyForUpdateInput
 }
 
@@ -328,9 +354,9 @@ input TagUpdateArgs {
 }
 
 input TagCreateInput {
+  label: String
   createdAt: DateTime
   updatedAt: DateTime
-  label: String
   items: ItemRelateToManyForCreateInput
 }
 
