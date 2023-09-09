@@ -16,6 +16,12 @@ export default config({
 
     // WARNING: this is only needed for our monorepo examples, dont do this
     prismaClientPath: 'node_modules/.myprisma/client',
+
+    enableLogging: true,
+
+    idField: {
+      kind: 'uuid',
+    },
   },
   ui: {
     basePath: '/admin',
