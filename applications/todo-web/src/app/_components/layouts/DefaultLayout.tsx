@@ -6,7 +6,7 @@ import { Fragment, PropsWithChildren } from 'react'
 
 import { Navbar } from '@/app/_components/organisms/navbar'
 
-export const DefaultLayout = ({ children }: PropsWithChildren): JSX.Element => {
+export function DefaultLayout({ children }: PropsWithChildren): JSX.Element {
   return (
     <Fragment>
       <CssBaseline />

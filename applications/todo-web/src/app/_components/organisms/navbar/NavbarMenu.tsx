@@ -2,7 +2,7 @@ import { Box, Button } from '@mui/material'
 
 import { MenuLink } from '@/utils/navigation'
 
-export const NavbarMenu = ({ pages }: { pages: Array<MenuLink> }): JSX.Element => {
+export function NavbarMenu({ pages }: { pages: Array<MenuLink> }): JSX.Element {
   return (
     <Box>
       {pages.map((page) => {

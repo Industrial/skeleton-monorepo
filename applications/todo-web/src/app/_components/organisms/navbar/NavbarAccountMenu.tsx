@@ -12,7 +12,7 @@ import { useRef } from 'react'
 // import { useNavigate } from 'solid-start'
 import { MenuLink } from '@/utils/navigation'
 
-export const NavbarAccountMenu = ({ settings }: { settings: Array<MenuLink> }): JSX.Element => {
+export function NavbarAccountMenu({ settings }: { settings: Array<MenuLink> }): JSX.Element {
   // const navigate = useNavigate()
   const anchorElement = useRef<HTMLElement | null>(null)
 

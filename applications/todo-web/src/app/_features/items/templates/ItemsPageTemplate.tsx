@@ -8,7 +8,7 @@ import { DefaultLayout } from '@/app/_components/layouts/DefaultLayout'
 // TODO: Set title in document
 const title = 'Items'
 
-export const ItemsPageTemplate = (): JSX.Element => {
+export function ItemsPageTemplate(): JSX.Element {
   return (
     <DefaultLayout>
       <PageContainer>

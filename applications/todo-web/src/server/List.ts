@@ -1,17 +1,15 @@
 import { z } from 'zod'
 
 import { keystoneContext } from '@/cms/context'
-import { Tag } from '@/domain'
+import { List } from '@/domain'
 import { publicProcedure } from '@/server/trpc'
 import { Maybe } from '@/utils/Maybe'
 
 export const createList = publicProcedure
-  .input(
-    z.object({
+  .input(z.object({
       label: z.string(),
       sortOrder: z.optional(z.number()),
-    }),
-  )
+    }))
   .mutation(async (_opts) => {
     const result = await keystoneContext.query.List.createOne({
       data: {
@@ -21,7 +19,7 @@ export const createList = publicProcedure
       },
     })
 
-    return result as Tag
+    return result as List
   })
 
 export const getList = publicProcedure.input(z.string()).query(async ({ input: id }) => {
@@ -31,7 +29,7 @@ export const getList = publicProcedure.input(z.string()).query(async ({ input: i
     },
   })
 
-  return result as Maybe<Tag>
+  return result as Maybe<List>
 })
 
 export const countLists = publicProcedure.query(async () => {
@@ -47,17 +45,15 @@ export const getLists = publicProcedure.query(async () => {
     },
   })
 
-  return result as Array<Tag>
+  return result as Array<List>
 })
 
 export const updateList = publicProcedure
-  .input(
-    z.object({
+  .input(z.object({
       id: z.string(),
       label: z.string(),
       sortOrder: z.number(),
-    }),
-  )
+    }))
   .mutation(async (_opts) => {
     const result = await keystoneContext.query.List.updateOne({
       where: {
@@ -70,15 +66,13 @@ export const updateList = publicProcedure
       },
     })
 
-    return result as Tag
+    return result as List
   })
 
 export const deleteList = publicProcedure
-  .input(
-    z.object({
+  .input(z.object({
       id: z.string(),
-    }),
-  )
+    }))
   .mutation(async (_opts) => {
     const result = await keystoneContext.query.List.deleteOne({
       where: {
@@ -86,5 +80,5 @@ export const deleteList = publicProcedure
       },
     })
 
-    return result as Tag
+    return result as List
   })

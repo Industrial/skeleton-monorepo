@@ -1,7 +1,7 @@
 import { DashboardPageTemplate } from '@/app/_features/dashboard/templates/DashboardPageTemplate'
 import { serverClient } from '@/app/_trpc/serverClient'
 
-export default async (): Promise<JSX.Element> => {
+export default async function Page(): Promise<JSX.Element> {
   const [listsCount, projectsCount, tagsCount, itemsCount] = await Promise.all([
     serverClient.countLists(),
     serverClient.countProjects(),

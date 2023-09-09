@@ -5,7 +5,7 @@ export type LinkProps = MUILinkProps & {
   linkVariant: 'no-decoration' | 'underline'
 }
 
-export const Link = ({ href, children, linkVariant = 'underline', ...props }: LinkProps): JSX.Element => {
+export function Link({ href, children, linkVariant = 'underline', ...props }: LinkProps): JSX.Element {
   return (
     <MUILink
       href={href}

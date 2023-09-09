@@ -15,4 +15,5 @@ const handler = async (req: Request): Promise<Response> => {
   return response
 }
 
-export { handler as GET, handler as POST }
+export const GET = handler
+export const POST = handler

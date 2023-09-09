@@ -58,7 +58,7 @@ const settings: Array<MenuLink> = [
   },
 ]
 
-export const Navbar = (): JSX.Element => {
+export function Navbar(): JSX.Element {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">

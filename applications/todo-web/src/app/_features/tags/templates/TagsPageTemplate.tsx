@@ -6,7 +6,7 @@ import { DefaultLayout } from '@/app/_components/layouts/DefaultLayout'
 // TODO: Set title in document
 const title = 'Tags'
 
-export const TagsPageTemplate = (): JSX.Element => {
+export function TagsPageTemplate(): JSX.Element {
   return (
     <DefaultLayout>
       <PageContainer>

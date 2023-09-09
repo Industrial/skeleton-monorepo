@@ -1,6 +1,6 @@
 import { list } from '@keystone-6/core'
 import { allowAll } from '@keystone-6/core/access'
-import { checkbox, integer, relationship, text, timestamp } from '@keystone-6/core/fields'
+import { checkbox, relationship, text, timestamp } from '@keystone-6/core/fields'
 
 import * as dateStamped from './mixins/dateStamped'
 import * as labeled from './mixins/labeled'

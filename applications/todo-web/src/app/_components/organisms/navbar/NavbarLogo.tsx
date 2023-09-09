@@ -1,7 +1,8 @@
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-export const NavbarLogo = ({ variant }: { variant: 'large' | 'small' }): JSX.Element => {
+
+export function NavbarLogo({ variant }: { variant: 'large' | 'small' }): JSX.Element {
   return (
     <Box
       alignItems="center"

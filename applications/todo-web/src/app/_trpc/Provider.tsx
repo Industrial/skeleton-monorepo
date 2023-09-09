@@ -8,20 +8,21 @@ import { useState } from 'react'
 import { trpc } from '@/app/_trpc/client'
 import { baseURL } from '@/utils/environment'
 
-const Provider = ({ children }: { children: ReactNode }): JSX.Element => {
-  const [queryClient] = useState(() => {
-    return new QueryClient({})
-  })
+export default function Provider({
+  children,
+}: {
+  children: ReactNode
+}): JSX.Element {
+  const [queryClient] = useState(() => new QueryClient({}))
 
-  const [trpcClient] = useState(() => {
-    return trpc.createClient({
+  const [trpcClient] = useState(() =>
+    trpc.createClient({
       links: [
         httpBatchLink({
           url: `${baseURL()}/api/trpc`,
         }),
       ],
-    })
-  })
+    }))
 
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
@@ -29,5 +30,3 @@ const Provider = ({ children }: { children: ReactNode }): JSX.Element => {
     </trpc.Provider>
   )
 }
-
-export default Provider

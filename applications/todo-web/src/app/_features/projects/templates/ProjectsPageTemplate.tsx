@@ -10,7 +10,7 @@ import { CounterCard } from '@/app/_features/dashboard/components/molecules/Coun
 // TODO: Set title in document
 const title = 'Projects'
 
-export const ProjectsPageTemplate = (): JSX.Element => {
+export function ProjectsPageTemplate(): JSX.Element {
   return (
     <DefaultLayout>
       <PageContainer>

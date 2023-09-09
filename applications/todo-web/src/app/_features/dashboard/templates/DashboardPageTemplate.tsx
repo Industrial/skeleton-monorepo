@@ -10,7 +10,7 @@ import { CounterCard } from '@/app/_features/dashboard/components/molecules/Coun
 // TODO: Set title in document
 const title = 'Dashboard'
 
-export const DashboardPageTemplate = ({
+export function DashboardPageTemplate({
   listsCount,
   projectsCount,
   tagsCount,
@@ -20,7 +20,7 @@ export const DashboardPageTemplate = ({
   projectsCount: number
   tagsCount: number
   itemsCount: number
-}): JSX.Element => {
+}): JSX.Element {
   return (
     <DefaultLayout>
       <PageContainer>

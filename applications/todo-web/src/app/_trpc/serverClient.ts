@@ -8,7 +8,7 @@ export const url = `${baseURL()}/api/trpc`
 export const serverClient = appRouter.createCaller({
   links: [
     httpBatchLink({
-      url: `${baseURL()}/api/trpc`,
+      url,
     }),
   ],
 })

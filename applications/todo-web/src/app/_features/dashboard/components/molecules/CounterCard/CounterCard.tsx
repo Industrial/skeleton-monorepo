@@ -5,7 +5,7 @@ export type CounterCardProps = {
   href: string
 }
 
-export const CounterCard = ({ count, label, href }: CounterCardProps): JSX.Element => {
+export function CounterCard({ count, label, href }: CounterCardProps): JSX.Element {
   return (
     <Link
       href={href}

@@ -2,7 +2,7 @@
 
 import { Button } from '@mui/material'
 
-export const Toolbar = (): JSX.Element => {
+export function Toolbar(): JSX.Element {
   return (
     <div>
       <Button color="primary">Add</Button>

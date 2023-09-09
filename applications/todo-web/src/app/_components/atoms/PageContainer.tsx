@@ -1,5 +1,6 @@
 import { Container } from '@mui/material'
-export const PageContainer = ({ children }: { children: JSX.Element }): JSX.Element => {
+
+export function PageContainer({ children }: { children: JSX.Element }): JSX.Element {
   return (
     <Container
       maxWidth="xl"

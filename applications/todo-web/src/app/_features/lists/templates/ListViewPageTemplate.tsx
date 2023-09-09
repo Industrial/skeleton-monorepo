@@ -8,7 +8,7 @@ import { PageContainer } from '@/app/_components/atoms/PageContainer'
 import { DefaultLayout } from '@/app/_components/layouts/DefaultLayout'
 import { List } from '@/domain'
 
-export const ListViewPageTemplate = ({ list }: { list: List }): JSX.Element => {
+export function ListViewPageTemplate({ list }: { list: List }): JSX.Element {
   console.log(mkCounter)
   return (
     <DefaultLayout>
